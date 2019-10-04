@@ -203,6 +203,7 @@ public class HTTP {
                     location = url.substring(separator);
                 }
             }
+
             Socket socket = new Socket(InetAddress.getByName(host), port);
             writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream(), StandardCharsets.UTF_8));
 
@@ -237,7 +238,6 @@ public class HTTP {
                     redirect = true;
                 }
 
-
                 if (redirect && response.length() > 10 && response.substring(0, 10).equals("Location: ")) {
                     String newLocation = response.substring(10);
                     if (redirectInfo) {
@@ -271,7 +271,6 @@ public class HTTP {
                     }else
                         System.out.println(response);
                 }
-                //System.out.println(response);
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -283,8 +282,8 @@ public class HTTP {
             return;
         BufferedWriter writer;
         BufferedReader reader;
-        String host = "",location="/";
-        int separator = 0;
+        String host ,location="/";
+        int separator;
         if(url.contains("https://")) {
             separator = url.indexOf("/", 8);
             if(separator == -1)
@@ -339,7 +338,7 @@ public class HTTP {
                     reader.close();
                     writer.close();
                     socket.close();
-                    redirect(method,newLocation, ++redIndex,isO,fileWriter);
+                    redirect(method,newLocation,++redIndex,isO,fileWriter);
                     break;
                 }
             }
@@ -347,6 +346,4 @@ public class HTTP {
             e.printStackTrace();
         }
     }
-
-
 }
