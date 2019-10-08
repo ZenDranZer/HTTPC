@@ -14,7 +14,7 @@ public class HTTP {
 
     public void printHelp(String[] command){
 
-        if(command.length <=1 || !command[0].toLowerCase().equals("httpc")){
+        if(command.length <=2 && !command[0].toLowerCase().equals("httpc")){
             printGeneralHelp();
             return;
         }
